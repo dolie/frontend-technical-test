@@ -1,3 +1,29 @@
+# Technical choices
+
+- Husky : pre-commit to run test on every commit.
+- Eslint : Airbnb => I agree with most of the decisions (I changed some specific rule).
+- Updated tsconfig to use aliases and run on test files.
+- Custom babel to correctly run Jest's tests with TS & aliases, etc...
+- Unit Tests on services & components... just do `yarn test --coverage`
+- Possibility to login from any user from homepage
+- Handle errors gracefully and display to users
+- Using axios interceptors to init logging service.
+- Each users can send/receive messages
+- Fixed interface conversation (missing lastmessagetimestamp)
+- Fixed typo in db.json ('second' => 'deuxième')
+
+# Signature
+```
+  __          ___                    
+ /\ \        /\_ \    __           
+ \_\ \    ___\//\ \  /\_\     __   
+ /'_` \  / __`\\ \ \ \/\ \  /'__`\  
+/\ \L\ \/\ \L\ \\_\ \_\ \ \/\  __/  
+\ \___,_\ \____//\____\\ \_\ \____\  
+ \/__,_ /\/___/ \/____/ \/_/\/____/  
+```
+
+
 # Context :
 
 At leboncoin, our users can share messages about a transaction, or ask for informations about any products.

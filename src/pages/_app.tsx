@@ -1,12 +1,17 @@
 import type { AppProps } from 'next/app'
-import { getLoggedUserId } from '../utils/getLoggedUserId'
+import type { FC } from 'react'
 import '../styles/globals.css'
+import initAxios from '@/libs/axios'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
-// Default way to get a logged user
-export const loggedUserId = getLoggedUserId()
+initAxios()
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-}
+const MyApp: FC = ({ Component, pageProps }: AppProps) => (
+  <div>
+    <Component {...pageProps} />
+    <ToastContainer />
+  </div>
+)
 
 export default MyApp

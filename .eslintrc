@@ -1,3 +1,17 @@
 {
-  "extends": ["next", "next/core-web-vitals"]
+  "extends": ["next", "next/core-web-vitals", "airbnb", "airbnb/hooks"],
+  "env": {
+    "jest/globals": true
+  },
+  "rules": {
+    "semi": [2, "never"],
+    "arrow-parens": [2, "as-needed"],
+    "react/react-in-jsx-scope": 0,
+    "react/jsx-filename-extension": [2, { "extensions": [".tsx", ".jsx"] }],
+    "import/extensions": [2, { "js": "never", "ts": "never", "json": "always", "tsx": "never" }],
+    "react/jsx-props-no-spreading": [1, { "custom": "ignore" }],
+    "react/function-component-definition": [2, { "namedComponents": "arrow-function" }],
+    "react-hooks/exhaustive-deps": 1,
+  },
+  "plugins": ["jest"]
 }
