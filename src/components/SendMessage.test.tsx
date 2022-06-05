@@ -1,6 +1,6 @@
 import SendMessage from '@/components/SendMessage'
 import { // eslint-disable-line import/no-extraneous-dependencies
-  screen, render, fireEvent, waitFor,
+  screen, render, fireEvent, waitFor, act,
 } from '@testing-library/react'
 
 let mockPostMessage = jest.fn((a, b, c) => Promise.resolve({ a, b, c }))
@@ -37,11 +37,11 @@ describe('SendMessage', () => {
 
     const input = screen.getByPlaceholderText('Write something here')
 
-    await fireEvent.change(input, { target: { value: magicSentence } })
+    await waitFor(() => fireEvent.change(input, { target: { value: magicSentence } }))
 
     const button = screen.getByText('Send')
 
-    await fireEvent.click(button)
+    await waitFor(() => fireEvent.click(button))
 
     expect(mockPostMessage).toHaveBeenCalledWith(
       1,
