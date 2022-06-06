@@ -6,7 +6,7 @@ const MainLayout: LayoutProps = ({ children }) => {
       <div className="flex flex-col md:w-1/2 md:ml-auto md:mr-auto xl:w-1/4">
         <pre className="leading-none w-auto m-auto text-center pt-[3vh] sm:pt-[5vh] md:pt-[10vh] lg:pt-[15vh] xl:pt-[20vh] pb-6 sm:pb-10 text-xs">
           {`
- _      _                           _       
+  _      _                           _       
  | |    | |                         (_)      
  | | ___| |__   ___  _ __   ___ ___  _ _ __  
  | |/ _ \\ '_ \\ / _ \\| '_ \\ / __/ _ \\| | '_ \\ 
