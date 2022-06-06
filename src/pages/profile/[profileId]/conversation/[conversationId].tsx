@@ -1,15 +1,18 @@
-import type { FC } from 'react'
+import type { FC, ReactElement } from 'react'
 import { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/router'
+import { toast } from 'react-toastify'
+import Head from 'next/head'
+
 import { getMessages } from '@/services/messages'
 import { getUser } from '@/services/users'
+
 import { Message } from '@/types/message'
-import Head from 'next/head'
-import MessageList from '@/components/MessageList'
 import { User } from '@/types/user'
-import BackButton from '@/components/BackButton'
+
+import Layout from '@/components/Layout'
+import MessageList from '@/components/MessageList'
 import SendMessage from '@/components/SendMessage'
-import { toast } from 'react-toastify'
 
 const ConversationPage: FC = () => {
   const router = useRouter()
@@ -20,7 +23,6 @@ const ConversationPage: FC = () => {
   const [users, setUsers] = useState<User[]>(null)
 
   const fetchMessages = useCallback(async () => {
-    setLoading(true)
     try {
       const data = await getMessages(conversationId)
       setMessages(data)
@@ -32,11 +34,12 @@ const ConversationPage: FC = () => {
 
   useEffect(() => {
     if (!conversationId) return
+    setLoading(true)
     fetchMessages()
   }, [conversationId, fetchMessages])
 
   useEffect(() => {
-    if (!messages) return
+    if (users || !messages) return
 
     async function fetchUsers(uuids: number[]) {
       setLoading(true)
@@ -55,36 +58,48 @@ const ConversationPage: FC = () => {
     const uniqueUsersIds = [...new Set(usersId)]
 
     fetchUsers(uniqueUsersIds)
-  }, [messages])
+  }, [messages, users])
 
   return (
-    <div>
+
+    <div className="flex flex-col justify-between">
       <Head>
         <title>Messages</title>
       </Head>
 
-      <BackButton />
+      <div className="mb-10">
 
-      <h1>
-        Messages
-      </h1>
+        <h1 className="title">
+          Messages
+        </h1>
 
-      <div>
-        {
+        <div>
+          {
           isLoading
-            ? <p>Loading messages...</p>
+            ? <p className="text-center">Loading messages...</p>
             : <MessageList messages={messages} profileId={String(profileId)} users={users} />
         }
+        </div>
       </div>
 
-      <SendMessage
-        isLoading={isLoading}
-        fetchMessages={fetchMessages}
-        conversationId={String(conversationId)}
-        profileId={String(profileId)}
-      />
+      <div>
+        <SendMessage
+          isLoading={isLoading}
+          fetchMessages={fetchMessages}
+          conversationId={String(conversationId)}
+          profileId={String(profileId)}
+        />
+      </div>
     </div>
   )
 }
 
 export default ConversationPage
+
+ConversationPage.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <Layout>
+      {page}
+    </Layout>
+  )
+}

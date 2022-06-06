@@ -1,17 +1,28 @@
 # Technical choices
 
 - Husky : pre-commit to run test on every commit.
-- Eslint : Airbnb => I agree with most of the decisions (I changed some specific rule).
+- Eslint : Airbnb => I agree with most of the decisions (I changed some specific rules).
 - Updated tsconfig to use aliases and run on test files.
 - Custom babel to correctly run Jest's tests with TS & aliases, etc...
-- Unit Tests on services & components... just do `yarn test --coverage`
-- Possibility to login from any user from homepage
-- Handle errors gracefully and display to users
-- Using axios interceptors to init logging service.
-- Each users can send/receive messages
+- Unit Tests on components & services... just do `yarn test --coverage`.
+- Possibility to login from any user on homepage.
+- Handle errors gracefully and display message to user.
+- Each users can send/receive messages.
+- AutoScroll to the most recent message.
+- Use of nextjs layout to keep UI non-flashy and fluid between pages
+- Use of tailwindcss, because my friend told me “it's cool”.
+- Awesome brand ascii art.
+- Sharp, minimal and eye breaking UI.
+- Responsive design.
+- Init axios interceptors for logging service.
 - Fixed interface conversation (missing lastmessagetimestamp)
 - Fixed typo in db.json ('second' => 'deuxième')
 
+# Screenshots
+
+![home](./docs/home-iPhone-SE.png)
+![conversations](./docs/conversations-iPhone-SE.png)
+![messages](./docs/messages-iPhone-SE.png)
 # Signature
 ```
   __          ___                    

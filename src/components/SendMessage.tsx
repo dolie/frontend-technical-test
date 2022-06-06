@@ -2,6 +2,7 @@ import type { FC } from 'react'
 import { useState } from 'react'
 import { postMessage } from '@/services/messages'
 import { toast } from 'react-toastify'
+import BackButton from '@/components/BackButton'
 
 interface SendMessageProps {
   isLoading: boolean;
@@ -28,15 +29,23 @@ const SendMessage:FC<SendMessageProps> = ({
 
   return (
 
-    <form onSubmit={e => handleSubmit(e)}>
+    <form onSubmit={e => handleSubmit(e)} className="text-center flex flex-col">
 
       <textarea
         placeholder="Write something here"
         value={value}
         onChange={({ target }) => setValue(target.value)}
         readOnly={isLoading}
+        className="border border-solid border-white bg-black w-2/3 mb-4 mx-auto"
       />
-      <input type="submit" value="Send" readOnly={isLoading} />
+
+      <div className="flex justify-between w-3/4 mx-auto">
+        <BackButton />
+
+        <button type="submit" disabled={isLoading} className="btn-primary w-5/12 p-2">
+          Send
+        </button>
+      </div>
     </form>
   )
 }

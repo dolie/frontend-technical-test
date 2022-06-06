@@ -8,15 +8,17 @@ interface UserListProps {
 
 const UserList: FC<UserListProps> = ({ users }) => (
   !users || !users.length
-    ? <p>No users to display</p>
+    ? <p className="text-center">No users to display</p>
     : (
       <div>
-        <h2>Login as : </h2>
+        <h2 className="text-center mb-5">Login as : </h2>
         <ul>
           {users.map(user => (
-            <li key={user.id}>
-              <Link href={`/profile/${user.id}`}>
-                {user.nickname}
+            <li key={user.id} className="text-center btn-primary w-1/2">
+              <Link href={`/profile/${user.id}`} passHref>
+                <a href="toUserPage" className="inline-block w-full h-full p-2">
+                  {user.nickname}
+                </a>
               </Link>
             </li>
           ))}

@@ -1,4 +1,4 @@
-import type { FC } from 'react'
+import type { FC, ReactElement } from 'react'
 import { useRouter } from 'next/router'
 import { getConversations } from '@/services/conversations'
 import { getUser } from '@/services/users'
@@ -9,6 +9,7 @@ import { User } from '@/types/user'
 import UserConversations from '@/components/UserConversations'
 import BackButton from '@/components/BackButton'
 import { toast } from 'react-toastify'
+import Layout from '@/components/Layout'
 
 const ProfilePage: FC = () => {
   const router = useRouter()
@@ -20,6 +21,7 @@ const ProfilePage: FC = () => {
   const [isLoading, setLoading] = useState(false)
 
   useEffect(() => {
+    if (!profileId) return
     async function fetchData() {
       setLoading(true)
 
@@ -47,19 +49,28 @@ const ProfilePage: FC = () => {
         <title>Your conversations</title>
       </Head>
 
-      <BackButton />
+      <h1 className="title">
+        Your Conversations :
+      </h1>
 
-      <h1>Your Conversations :</h1>
-
-      <div>
+      <div className="mb-7">
         {
           isLoading
-            ? <p>Loading conversations...</p>
+            ? <p className="text-center">Loading conversations...</p>
             : <UserConversations conversations={conversations} user={user} />
         }
       </div>
+      <BackButton />
     </div>
   )
 }
 
 export default ProfilePage
+
+ProfilePage.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <Layout>
+      {page}
+    </Layout>
+  )
+}

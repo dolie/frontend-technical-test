@@ -34,18 +34,17 @@ const UserConversations: FC<UserConversationsProps> = ({ conversations, user }) 
   return (
     <div>
       {!conversations || !formattedConversation.length
-        ? <p>No conversations to display</p>
+        ? <p className="text-center">No conversations to display</p>
         : (
           <ul>
             {formattedConversation.map(conversation => (
-              <li key={conversation.id}>
-
-                <Link href={`/profile/${user.id}/conversation/${conversation.id}`}>
+              <li key={conversation.id} className="text-center">
+                <Link href={`/profile/${user?.id}/conversation/${conversation.id}`} passHref>
                   {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                  <a>
-                    <h3>{conversation.protagonist}</h3>
+                  <a href="toConversaion" className="btn-primary w-3/4 p-2 inline-block">
+                    <h3 className="bg-white text-black py-2">{conversation.protagonist}</h3>
 
-                    <p>
+                    <p className="py-2">
                       Last message :
                       {' '}
                       {conversation.lastMessageDateString}
